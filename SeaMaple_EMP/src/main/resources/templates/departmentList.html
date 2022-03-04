@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <title>社員管理システム</title>
+    <style type="text/css">
+        .container table td.text-center {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 縮小の自動補正 -->
+    <div class="container">
+        <!-- 中央寄せ -->
+        <div class="row justify-content-center">
+            <!-- カラムの幅 -->
+            <div class="col-md-10">
+                <!-- 下線を引き3px下げる -->
+                <h1 class="border-bottom my-3" th:text="#{employeeList}"></h1>
+                <!-- テープル枠線、カーソル -->
+                <table class="table table-bordered table-hover">
+                    <tr class="table-warning">
+                        <th class="text-center">課番号</th>
+                        <th class="text-center">課名</th>
+                        <th class="text-center">合計売上</th>
+                        <th class="text-center">合計人数</th>
+                        <th class="text-center">1人あたりの売上平均値(小数点切捨)</th>
+                        <th></th>
+                    </tr>
+                    <form method="get">
+                        <!-- 一覧画面表示 -->
+
+                        <tr th:each="dpt : ${departmentList}">
+                            <td th:text="${dpt.department_id}" class="text-center"></td>
+                            <td th:text="${dpt.department_name}" class="text-center"></td>
+                            <td th:if = "${dpt.department_id == 1}"></td>
+
+                            <td></td>
+                            <td class="text-center"><button type="submit" class="btn btn-danger">編集</button>
+                            </td>
+                        </tr>
+                        <!-- <tr th:each="emp : ${employees}">
+                            <td th:text="${emp.name}"></td>
+                        </tr> -->
+                    </form>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

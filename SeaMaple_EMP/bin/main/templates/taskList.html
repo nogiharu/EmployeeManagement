@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<title>社員管理システム</title>
+<style type="text/css">
+.container table td.text-center {
+	vertical-align: middle;
+}
+</style>
+</head>
+
+<body>
+	<!-- 縮小の自動補正 -->
+	<div class="container">
+		<!-- 中央寄せ -->
+		<div class="row justify-content-center">
+			<!-- カラムの幅 -->
+			<div class="col-md-10">
+				<!-- 下線を引き3px下げる -->
+				<h4 class="border-bottom my-3">全社員一覧</h4>
+				<!-- テープル枠線、カーソル -->
+				<table class="table table-bordered table-hover">
+					<tr class="table-warning">
+						<th class="text-center">id</th>
+						<th class="text-center">氏名</th>
+						<th class="text-center">担当地区</th>
+						<th class="text-center">売上</th>
+						<th class="text-center">保有顧客数</th>
+						<th class="text-center">更新日時</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<form method="post" t>
+						<!-- 一覧画面表示 -->
+						<tr th:each="ts : ${taskList}">
+							<td th:text="${ts.employee_id}" class="text-center"></td>
+							<td th:text="${ts.name}" class="text-center"></td>
+							<td th:text="${ts.area}" class="text-center"></td>
+							<td th:text="${ts.sales}" class="text-center"></td>
+							<td th:text="${ts.customers}" class="text-center"></td>
+							<td th:text="${ts.update_date}" class="text-center"></td>
+							<td></td>
+							<td class="text-center"><button type="submit"
+									class="btn btn-danger">編集</button></td>
+						</tr>
+						<!-- <tr th:each="ts : ${taskList}"  th:object="${task}">
+							<td th:text="*{employee_id}" class="text-center"></td>
+							<td th:text="*{name}" class="text-center"></td>
+							<td th:text="*{area}" class="text-center"></td>
+							<td th:text="*{sales}" class="text-center"></td>
+							<td th:text="*{customers}" class="text-center"></td>
+							<td th:text="*{update_date}" class="text-center"></td>
+							<td></td>
+							<td class="text-center"><button type="submit"
+									class="btn btn-danger">編集</button></td>
+						</tr> -->
+					</form>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
