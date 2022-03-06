@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<title>社員管理システム</title>
+	<style type="text/css">
+		.container table td.text-center {
+			vertical-align: middle;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 縮小の自動補正 -->
+	<div class="container">
+		<!-- 中央寄せ -->
+		<div class="row justify-content-center">
+			<!-- カラムの幅 -->
+			<div class="col-md-10">
+				<!-- 下線を引き3px下げる -->
+				<h4 class="border-bottom my-3">全社員一覧</h4>
+				<!-- テープル枠線、カーソル -->
+				<table class="table table-bordered table-hover">
+					<tr class="table-warning">
+						<th class="text-center">id</th>
+						<th class="text-center">氏名</th>
+						<th class="text-center">担当地区</th>
+						<th class="text-center">売上</th>
+						<th class="text-center">保有顧客数</th>
+						<th class="text-center">更新日時</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<form>
+						<!-- 一覧画面表示 -->
+						<tr th:each="task : ${taskList}" th:object="${task}"
+							th:classappend="*{deleteFlg} ? '' : 'bg-secondary text-white' ">
+							<td th:text="*{employeeId}" class="text-center"></td>
+							<td th:text="*{name}" class="text-center"></td>
+							<td th:text="*{area}" class="text-center"></td>
+							<td th:text="*{sales}" class="text-center"></td>
+							<td th:text="*{customers}" class="text-center"></td>
+							<td th:text="*{updateDate}" class="text-center"></td>
+							
+								<td class="text-center"><button type="submit" th:disabled="*{!deleteFlg}"
+										th:formaction="@{/task/update/__*{employeeId}__}"
+										class="btn btn-warning">編集</button></td>
+								<td class="text-center"><button type="submit" th:disabled="*{!deleteFlg}"
+										th:formaction="@{/task/delete/__*{employeeId}__}"
+										class="btn btn-danger">削除</button>
+								</td>
+						
+						</tr>
+					</form>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
