@@ -3,14 +3,15 @@ package com.example.seamaple_20220305.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.seamaple_20220305.entity.Task;
 
-public interface TaskRepository extends JpaRepository<Task, Integer> {
+public interface TaskRepository extends JpaRepository<Task, Integer> ,JpaSpecificationExecutor<Task>{
 
-/* 	public static final String QUERY_BASE = "SELECT"
+	/* public static final String QUERY_BASE = "SELECT"
 			// + " DISTINCT"
 			+ " t.department_id,"
 			// + " d.name,"
